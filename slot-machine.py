@@ -10,12 +10,12 @@ Objectives
 
 def deposit():
     while True:
-        deposit = input(f"Current Balance: {balance}\nEnter the amount to deposit: ")
-        print(deposit)
-        if int(deposit).isdigit == True:
+        try:
+            deposit = int(input(f"\nCurrent Balance: {balance}\nEnter the amount to deposit: "))
             print(f'{deposit} is successfully added to the balance!')
             return int(deposit)
-        print('Invalid input!')
+        except:
+            print('Invalid input!')
 
 def place_bet():
     pass
@@ -29,7 +29,7 @@ while(True):
     if decision == '1':
         dep = deposit()
         balance += dep
-        print(f"Updated Balance: {balance}")
+        print(f"Updated Balance: {balance}\n")
     elif decision == '2':
         place_bet()
     elif decision == '3':
