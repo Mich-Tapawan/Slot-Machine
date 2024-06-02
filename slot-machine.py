@@ -9,7 +9,13 @@ Objectives
 '''
 
 def deposit():
-    pass
+    while True:
+        deposit = input(f"Current Balance: {balance}\nEnter the amount to deposit: ")
+        print(deposit)
+        if int(deposit).isdigit == True:
+            print(f'{deposit} is successfully added to the balance!')
+            return int(deposit)
+        print('Invalid input!')
 
 def place_bet():
     pass
@@ -21,7 +27,9 @@ while(True):
     decision = input("Enter the number of the option you want to choose: ")
 
     if decision == '1':
-        deposit()
+        dep = deposit()
+        balance += dep
+        print(f"Updated Balance: {balance}")
     elif decision == '2':
         place_bet()
     elif decision == '3':
