@@ -32,7 +32,11 @@ def deposit():
             print('Invalid input!')
 
 def play_slot(bal, numLine, bet):
-    pass
+    items = []
+    for key, amt in SYMBOL_AMOUNT.items():
+        for i in range(amt):
+            items.append(key)
+    print(items)
 
 def place_bet(balance, numLine):
     while True:
@@ -43,8 +47,11 @@ def place_bet(balance, numLine):
             else:
                 print(f'You have successfully bet {bet} on {numLine} line(s).')
                 play_slot(balance, numLine, bet)
+                break
         except:
             print('Invalid input!')
+
+
 
 print('||| SLOT MACHINE GAME |||\n')
 balance = 0
@@ -57,7 +64,16 @@ while(True):
         balance += dep
         print(f"Updated Balance: {balance}\n")
     elif decision == '2':
-        place_bet()
+        while True:
+            try:
+                numLine = int(input('\nEnter the number of lines you are going to bet on (1-3): '))
+                if numLine > 3 or numLine <= 0:
+                    print('Invalid number of lines!')
+                else:
+                    place_bet(balance, numLine)
+                    break
+            except:
+                print('Invalid input!')
     elif decision == '3':
         print('\nThank you for playing!')
         break
