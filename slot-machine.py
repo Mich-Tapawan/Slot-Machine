@@ -8,6 +8,20 @@ Objectives
 5. Update balance
 '''
 
+SYMBOL_AMOUNT = {
+    'A': 6,
+    'B': 5,
+    'C': 4,
+    'D': 3
+}
+
+SYMBOL_VALUES = {
+    'A' : 2,
+    'B' : 3,
+    'C' : 4,
+    'D' : 5
+}
+
 def deposit():
     while True:
         try:
@@ -17,8 +31,20 @@ def deposit():
         except:
             print('Invalid input!')
 
-def place_bet():
+def play_slot(bal, numLine, bet):
     pass
+
+def place_bet(balance, numLine):
+    while True:
+        try:
+            bet = int(input(f'\nEnter the amount to bet per chosen line: '))
+            if balance < (bet * numLine):
+                print('Invalid amount! Try again.')
+            else:
+                print(f'You have successfully bet {bet} on {numLine} line(s).')
+                play_slot(balance, numLine, bet)
+        except:
+            print('Invalid input!')
 
 print('||| SLOT MACHINE GAME |||\n')
 balance = 0
