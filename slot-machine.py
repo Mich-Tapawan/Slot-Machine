@@ -8,6 +8,8 @@ Objectives
 5. Update balance
 '''
 
+import random
+
 SYMBOL_AMOUNT = {
     'A': 6,
     'B': 5,
@@ -31,12 +33,27 @@ def deposit():
         except:
             print('Invalid input!')
 
-def play_slot(bal, numLine, bet):
+
+def generate_reels():
     items = []
     for key, amt in SYMBOL_AMOUNT.items():
         for i in range(amt):
             items.append(key)
-    print(items)
+
+    reels = []
+    for i in range(3):
+        reel = []
+        for j in range(3):
+            num = random.randint(0, len(items))
+            item = items.pop(num)
+            reel.append(item)
+        reels.append(reel)
+    return reels
+
+def play_slot(bal, numLine, bet):
+    slot = generate_reels()
+    print(slot)
+    pass
 
 def place_bet(balance, numLine):
     while True:
@@ -46,11 +63,10 @@ def place_bet(balance, numLine):
                 print('Invalid amount! Try again.')
             else:
                 print(f'You have successfully bet {bet} on {numLine} line(s).')
-                play_slot(balance, numLine, bet)
+                #play_slot(balance, numLine, bet)
                 break
         except:
-            print('Invalid input!')
-
+            print('Invalid amount of bet per line!')
 
 
 print('||| SLOT MACHINE GAME |||\n')
