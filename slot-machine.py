@@ -10,6 +10,11 @@ Objectives
 
 import random
 
+
+NUMBER_OF_REELS = 3
+
+ITEMS_PER_REEL = 3
+
 SYMBOL_AMOUNT = {
     'A': 6,
     'B': 5,
@@ -35,16 +40,18 @@ def deposit():
 
 
 def generate_reels():
+    # Generate all occurences/copy of each item
     items = []
     for key, amt in SYMBOL_AMOUNT.items():
         for i in range(amt):
             items.append(key)
 
+    #Create each reel and append a random item for each index
     reels = []
-    for i in range(3):
+    for i in range(NUMBER_OF_REELS):
         reel = []
-        for j in range(3):
-            num = random.randint(0, len(items))
+        for j in range(ITEMS_PER_REEL):
+            num = random.randint(0, len(items)-1)
             item = items.pop(num)
             reel.append(item)
         reels.append(reel)
@@ -62,8 +69,8 @@ def place_bet(balance, numLine):
             if balance < (bet * numLine):
                 print('Invalid amount! Try again.')
             else:
-                print(f'You have successfully bet {bet} on {numLine} line(s).')
-                #play_slot(balance, numLine, bet)
+                print(f'You have successfully bet {bet} on {numLine} line(s).\n')
+                play_slot(balance, numLine, bet)
                 break
         except:
             print('Invalid amount of bet per line!')
